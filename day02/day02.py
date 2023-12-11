@@ -2,7 +2,7 @@ import os
 import re
 
 path=os.path.dirname(__file__)
-f=open(f'{path}{os.sep}day2-bag-input.txt','r')
+f=open(f'{path}{os.sep}day02-bag-input.txt','r')
 
 rows=f.readlines()
 srows=[]
