@@ -6,35 +6,120 @@ engine=f.readlines()
 f.close()
 
 
-def numcount(xcord,ycord):
-    #left
-    nume=""
+def numcount(sor,oszlop):    
     numz=[]
-    i=0
-    while engine[xcord][ycord-i].isdigit():
-        nume=nume+(engine[xcord][ycord-i])
-        i=i+1
+    nume=""
+    sum=0
+    #top
+    if (engine[sor-1][oszlop].isdigit()):
+        #left
+        i=0
+        nume=""
+        while engine[sor-1][oszlop-i].isdigit():
+            nume=(engine[sor-1][oszlop-i])+nume
+            i=i+1
+        #right
+        i=1        
+        while engine[sor-1][oszlop+i].isdigit():
+            nume=nume+(engine[sor-1][oszlop+i])
+            i=i+1
+    if nume!="":
+        numz.append(nume)    
+    nume=""
     
+    #top-rest
+    if not (engine[sor-1][oszlop].isdigit()):
+        #left
+        i=1
+        nume=""
+        while engine[sor-1][oszlop-i].isdigit():
+            nume=(engine[sor-1][oszlop-i])+nume
+            i=i+1
+        if nume!="":
+            numz.append(nume)    
+        nume=""        
+        #right
+        i=1
+        while engine[sor-1][oszlop+i].isdigit():
+            nume=nume+(engine[sor-1][oszlop+i])
+            i=i+1
+    if nume!="":
+        numz.append(nume)    
+    nume=""
     
-    numz.append(nume[::-1])
-    print(numz)
-    return
-
-def asterisk(xcord,ycord):
-    print(engine[xcord][ycord])
-    valid=False
+    #bottom
+    if (engine[sor+1][oszlop].isdigit()):
+        #left
+        i=0
+        nume=""
+        while engine[sor+1][oszlop-i].isdigit():
+            nume=(engine[sor+1][oszlop-i])+nume
+            i=i+1
+        #right
+        i=1        
+        while engine[sor+1][oszlop+i].isdigit():
+            nume=nume+(engine[sor+1][oszlop+i])
+            i=i+1
+    if nume!="":
+        numz.append(nume)    
+    nume=""
+    
+    #bottom-rest
+    if not (engine[sor+1][oszlop].isdigit()):
+        #left
+        i=1
+        nume=""
+        while engine[sor+1][oszlop-i].isdigit():
+            nume=(engine[sor+1][oszlop-i])+nume
+            i=i+1            
+        if nume!="":
+            numz.append(nume)    
+        nume=""
+        #right
+        i=1
+        while engine[sor+1][oszlop+i].isdigit():
+            
+            nume=nume+(engine[sor+1][oszlop+i])
+            i=i+1
+    if nume!="":
+        numz.append(nume)    
+    nume=""
     #left
-    try:
-        if engine[xcord][ycord-1].isdigit():
-            numcount(xcord,ycord-1)
-    except:
-        NameError
+    i=1
+    while engine[sor][oszlop-i].isdigit():
+        nume=engine[sor][oszlop-i]+nume
+        i=i+1
+    if nume!="":
+        numz.append(nume)    
+    nume=""
+
+    #right
+    i=1
+    while engine[sor][oszlop+i].isdigit():
+        nume=nume+engine[sor][oszlop+i]
+        i=i+1
+    if nume!="":
+        numz.append(nume)    
+    nume=""
+        
+        
+        
+        
     
-    print(xcord,ycord,valid)
-    return
+    
+    if len(numz)==2:
+        sum=int(numz[0])*int(numz[1])
+        print(numz[0],numz[1],sum)
+    return sum
 
 
-for i in range(len(engine)-135):
-    for j in range(len(engine[i])):
-        if (engine[i][j])=="*":
-            asterisk(i,j)
+
+
+
+ossz=0
+for sor in range(len(engine)):
+    for oszlop in range(len(engine[sor])):
+        if (engine[sor][oszlop])=="*":
+            ossz=ossz+numcount(sor,oszlop)
+            print(ossz)
+print(ossz)
