@@ -27,18 +27,17 @@ for i in range(len(rows)):
 
 pwr=0
 points=0
+
 for i in range(len(win)):    
     for j in range(len(win[i])):
         if win[i][j] in own[i]:
             pwr=pwr+1
-    
+    print(i,pwr)
     if pwr==1:        
         points=points+1
-        print(i,points)
-    '''    
+        
     if pwr>=2:
-        points=points+round(points+math.pow(2,pwr))
-    '''
+        points=points+round(math.pow(2,pwr-1))
     pwr=0
 
 print(points)
