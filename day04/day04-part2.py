@@ -18,27 +18,29 @@ for i in range(len(rows)):
         newrow.remove("")
     
     for j in range(len(newrow)):
-        if j<=11 and j>=2:
+        if j<=6 and j>=2:
+        #if j<=1 and j>=2:
             tempwin.append(newrow[j])
-        if j>=13:
+        if j>=8:
+        #if j>=13:
             tempown.append(newrow[j].replace("\n",""))
     win.append(tempwin)
-    own.append(tempown)
+    own.append(tempown)    
 
-pwr=0
-points=0
+print(win)
+print()
+print(own)
 
-for i in range(len(win)):    
-    for j in range(len(win[i])):
+cardnums=[]
+wincardnums=[]
+matches=0
+
+for i in range(len(win)):
+    for j in range(len(win[i])):    
         if win[i][j] in own[i]:
-            pwr=pwr+1
-    #print(i,pwr)
-    if pwr==1:        
-        points=points+1
-        
-    if pwr>=2:
-        points=points+round(math.pow(2,pwr-1))
-    pwr=0
+            matches=matches+1
+    cardnums.append(matches)
+    matches=0
 
-print(points)
+print(cardnums)
 
